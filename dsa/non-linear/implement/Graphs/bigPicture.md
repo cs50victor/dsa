@@ -1,0 +1,8 @@
+```
+		      GRAPHS
+	    ↙️		       ↘️
+	DIRECTED      	  UNDIRECTED
+						 ↘️
+						   TREE
+
+```
