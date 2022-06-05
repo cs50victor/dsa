@@ -17,7 +17,7 @@ General Tree Representations are similar to graphs
 - in-tree  (directed edges towards the root node )
 - out-tree (directed edges away from the root node )
 
-In dsa, we generally think of trees as hierarchal out-trees.
+**** In dsa, we generally think of trees as hierarchal out-trees. ****
 
 			 ()         --> root node
 		()        ()    --> child nodes
@@ -41,36 +41,33 @@ The degree of a tree is the maximum degree of a node in the tree.
 13. Depth :- The depth of a node is the length of the path to its root (i.e., its root path). When using zero-based counting, the root node has depth zero, leaf nodes have height zero, and a tree with only a single node (hence both a root and leaf) has depth and height zero. Conventionally, an empty tree (tree with no nodes, if such are allowed) has height −1.
 """
 
-# add traversal 
-
-# -------- directed, unordered, tree
+# -------- directed  tree
 generalTree = {"a": ["c", "b"], "b": ["d"], "c": ["e"], "d": ["f"], "e": [], "f": []}
 
-# -------- undirected, unordered rooted tree
+# -------- undirected, rooted tree
 class TreeNode:
-    def __init__(self, data):
-        self.data = data
-        self.parent = None
-        self.children = []
-
-    def get_level(self):
-        level = 0
-        p = self.parent
-        while p:
-            level += 1
-            p = p.parent
-        return level
-
-    def print_tree(self):
-        spaces = ' ' * self.get_level() * 3
-        prefix = spaces + "|__" if self.parent else ""
-        print(prefix + self.data)
+	def __init__(self, data):
+		self.data = data
+		self.parent = None
+		self.children = []
+	
+	def get_level(self):
+		level = 0
+		p = self.parent
+		while p:
+			level += 1
+			p = p.parent
+		return level
+	
+	def print_tree(self):
+		line = "\t|_" * self.get_level() + f"({self.data})"+"\n"
+		print(line, end="")
 		for child in self.children:
 			child.print_tree()
 
-    def add_child(self, child):
-        child.parent = self
-        self.children.append(child)
+	def add_child(self, child):
+		child.parent = self
+		self.children.append(child)
 
 
 root = TreeNode("Electronics")
@@ -94,3 +91,46 @@ root.add_child(cellphone)
 root.add_child(tv)
 
 root.print_tree()
+
+"""
+----------- Tree Traversal Algorithms ----------
+DFS : time O(n), space: best/avg O(logn) or O(h), worst(n)
+    : we go as far as we can from a node to a leaf node then 
+    : we move laterally '->' or '<-'
+1. Pre-order   (DFS - currentNode then childrenNodes)
+2. In-order    (DFS - leftNode-currentNde-rightNode)
+3. Post-order  (DFS - childrenNodes, then currentNode)
+4. Level-order (BFS)
+"""
+# Binary Tree Implementation
+def preOrder(root):
+	if root != None:
+		return
+	print(root.data)
+	preOrder(root.left)
+	preOrder(root.right)
+	
+def inOrder(root):
+	if root == None:
+		return
+	inOrder(root.left)
+	print(root.data)
+	inOrder(root.right)
+	
+def postOrder(root):
+	if root == None:
+		return
+	postOrder(root.left)
+	postOrder(root.right)
+	print(root.data)
+
+def levelOrder(root):
+	if root == None:
+		return
+	queue = [root]
+
+	while len(queue)>0:
+		currNode = queue.pop(0)
+		print(currNode)
+		queue.append(root.left)
+		queue.append(root.right)
