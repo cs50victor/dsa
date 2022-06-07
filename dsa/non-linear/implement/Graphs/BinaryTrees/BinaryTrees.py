@@ -30,6 +30,9 @@ SOME USEFUL FACTS FOR ALL BINARY TREES
 3. maximum # of nodes in a tree of height h  = 2^(H+1) -1
 
 Binary Heaps and Binary Search Trees common implementions of a binary tree
+
+
+More on traversal : https://www.enjoyalgorithms.com/blog/iterative-binary-tree-traversals-using-stack
 """
 
 class Node:

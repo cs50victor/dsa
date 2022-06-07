@@ -5,4 +5,5 @@ for i in ${!allPythonFiles[@]}; do
 done
 read -p " # > " index
 echo -e "------------------------\n\n"
+clear
 python ${allPythonFiles[$index]}

@@ -1,8 +1,10 @@
+from collections import deque
 """
 Binary Search Tree — ia binary tree with the constraint:
 - left subtree < currNode < right subtree
 
 The left and right subtree each must also be a binary search tree.
+
 
 """
 
@@ -41,7 +43,7 @@ class BST:
 
 		stack = [self.root]
 		
-		while len(stack)>0:
+		while stack:
 			currNode = stack.pop()
 
 			if currNode.value == value:
@@ -84,47 +86,82 @@ class BST:
 				return currNode.value
 			stack.append(currNode.right)
 
-	def preOrderTraversal(self):
+	
+	def preOrder(self):
 		if self.root == None:
 			return 
 		
-		allNodes = []
+		allValues = []
+		stack = [self.root]
+
+		while stack:
+			currNode = stack.pop()
+			allValues.append(currNode.value)
+			
+			if currNode.left != None:
+				stack.append(currNode.left)
+			if currNode.right != None:
+				stack.append(currNode.right)
+		return allValues
+		
+	def inOrder(self):
+		# in  order traversal (DFS)
+		stack = []
+		currNode = self.root
+		allValues = []
+		
+		while stack or currNode:
+			if currNode:
+				stack.append(currNode)
+				currNode = currNode.left
+			else:
+				currNode = stack.pop()
+				allValues.append(currNode.value)
+				currNode = currNode.right
+		return allValues
+
+		
+	def postOrder(self):
+		if self.root == None:
+			return 
+		
+		allValues = deque()
 		stack = [self.root]
 
 		while len(stack)>0:
 			currNode = stack.pop()
-
-			allNodes.append(currNode)
+			allValues.appendleft(currNode.value)
+			
 			if currNode.right != None:
 				stack.append(currNode.right)
 			if currNode.left != None:
 				stack.append(currNode.left)
-	
-	def printTree(self):
-		# pre order traversal (DFS)
+		return list(allValues)
+		
+	def levelOrder(self):
 		if self.root == None:
-			return 
-		#      (node, level)
-		stack = [(self.root, 0)]
+			return []
 	
-		while len(stack)>0:
-			currNode, level = stack.pop()
-			line = "\t|_" * level + f"({currNode.value})"+"\n"
-			print(line, end="")
-			if currNode.right != None:
-				stack.append((currNode.right, level+1))
+		queue = [self.root]
+		results = []
+		while len(queue)>0:
+			currNode = queue.pop(0)
+			results.append(currNode.value)
+	
 			if currNode.left != None:
-				stack.append((currNode.left, level+1))
+				queue.append(currNode.left)
+			if currNode.right != None:
+				queue.append(currNode.right)
+		return results
 
 bst = BST()
-for value in [17,4,1,20,9,23,18,34]:
-	bst.add(value)
-
-bst.printTree()
-
-bst2 = BST()
 nums = [25, 20, 36, 10, 22, 30, 40, 5, 12, 28, 38, 48, 1, 8, 15, 45, 50]
 for value in nums:
-	bst2.add(value)
+	bst.add(value)
 
-bst2.printTree()
+print("\nPREORDER\n", bst.preOrder())
+print("\nINORDER\n", bst.inOrder())
+print("\nPOSTORDER\n", bst.postOrder())
+print("\nLEVELORDER\n", bst.levelOrder())
+
+
