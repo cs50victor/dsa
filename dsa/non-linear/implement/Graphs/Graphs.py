@@ -37,6 +37,12 @@ Key words:
 	- adjacency list ( a dictionary where a key is a node, and the value is list of all neighbor nodes )
 	- edges (connection between two nodes)
 	- complete graph (a graph where there is a unique edge between every pair of nodes- full cycles) 
+
+Spanning Tree:
+--------------
+A spanning tree is a sub-graph of an undirected connected graph, which includes all the nodes of the graph with a minimum possible number of edges. 
+* # of spanning trees that can created from a complete graph = n^(n-2)
+- where n is the number of nodes
 """
 
 # ADJACENCY LIST REPRESENTATION

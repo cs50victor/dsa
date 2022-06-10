@@ -1,5 +1,8 @@
 """
   GENERALLY ONLY WORKS ON ARRAYS BECAUSE OF IT'S REANDOM ACCESS
+- A DIVIDE AND CONQUER APPLICATION
+- To use the divide and conquer algorithm, recursion is used
+------------------------------------------------------------
 
  - Dividing search in halves
  - search a 1,000,000 array in like 22 steps
@@ -21,9 +24,6 @@
         - repeat the previous step, until the target is found or region closes
 """
 
-arr =  [1,2,3,4,5,7,8,11,15,22]
-# list must be sorted if not
-# Big O of sorting algorithm * Big O of binary search
 
 """  
  - you need a 
@@ -35,6 +35,9 @@ arr =  [1,2,3,4,5,7,8,11,15,22]
  - keep moving the top and bottom
 """
 
+arr =  [1,2,3,4,5,7,8,11,15,22]
+# list must be sorted if not
+# Big O of sorting algorithm * Big O of binary search
 def binarySearch(arr, target):
     left = 0
     right = len(arr) - 1
@@ -48,4 +51,20 @@ def binarySearch(arr, target):
             left = mid +1
     return -1
 
+def binarySearchRecursive(arr, target, left, right):
+	if left > right:
+		return -1
+	
+	middle = (left + right) // 2
+
+	if arr[middle] == target:
+		return middle
+	elif arr[middle] > target:
+		right = middle - 1
+	else:
+		left = middle + 1
+	
+	return binarySearchRecursive(arr, target, left, right)
+		
 print("index - ", binarySearch(arr, 11))
+print("index - ", binarySearchRecursive(arr, 11, 0, len(arr)-1))
