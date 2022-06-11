@@ -1,5 +1,6 @@
 """
 Trees are graphs, more specifically , they are connected acyclic, and generally undirected, graphs.
+- just because a graph can be a tree, doesn't mean it is.
 
 Tree  constraints:
 - n nodes, n-1 edges (All nodes have exactly one parent, except the topmost root node, which has none.)
