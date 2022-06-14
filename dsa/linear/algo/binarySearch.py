@@ -1,7 +1,11 @@
 """
-  GENERALLY ONLY WORKS ON ARRAYS BECAUSE OF IT'S REANDOM ACCESS
+  ONLY WORKS ON ARRAYS BECAUSE OF IT'S REANDOM ACCESS
 - A DIVIDE AND CONQUER APPLICATION
 - To use the divide and conquer algorithm, recursion is used
+- There are three binary search templates
+
+
+TEMPLATE 1
 ------------------------------------------------------------
 
  - Dividing search in halves
@@ -68,3 +72,7 @@ def binarySearchRecursive(arr, target, left, right):
 		
 print("index - ", binarySearch(arr, 11))
 print("index - ", binarySearchRecursive(arr, 11, 0, len(arr)-1))
+
+"""
+TEMPLATE 2
+"""

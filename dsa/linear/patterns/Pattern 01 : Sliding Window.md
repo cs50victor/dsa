@@ -1,4 +1,9 @@
 # Pattern 1: Sliding Window
+- Fixed sized window
+- Dynamic sized window
+
+the window is a mental model, not an array.
+
 In many problems dealing with an array (or a <b>LinkedList</b>), we are asked to find or calculate something among all the contiguous subarrays (or sublists) of a given size. For example, take a look at this problem:
 
 ### Find Averages of Sub Arrays
@@ -832,3 +837,8 @@ findWordConcatenation("catcatfoxfox", ["cat", "fox"])//[3], The only substring c
 - The time complexity of the above algorithm will be `O(N * M * Len)` where `N` is the number of characters in the given string, `M` is the total number of `words`, and `Len` is the length of a word.
 - The space complexity of the algorithm is `O(M)` since at most, we will be storing all the `words` in the two <b>HashMaps</b>. In the worst case, we also need `O(N)` space for the resulting list. So, the overall space complexity of the algorithm will be `O(M+N)`.
 
+
+Major Reason for this pattern:
+- to avoid unnecessary iteration over elements we have already seen.
+- we just do a linear traversal without stopping
+- remove from left, add from right based on a condition
