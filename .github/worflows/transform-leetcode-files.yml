@@ -1,23 +1,23 @@
-name: Transform Leetcode File Names
+name: transform-leetcode-file-names
 on: [push]
 jobs:
-  Transform-Leetcode-Files:
+  transform-leetcode-files::
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - name: List files in the repository
-        run: |
-          	ls ${{ github.workspace }}
-		  	SAVEIFS=$IFS
-			IFS=$(echo -en "\n\b")
-			for file in `ls leetcode`; do
-				if [ ! -f "$file" ]; then
-					cleanName=`tr '[:blank:]' '-' <<< "$file"`
-					cleanName=`tr '[:upper:]' '[:lower:]' <<< "$cleanName"`
-					if [ $file != $cleanName ]; then
-						mv "$file" $cleanName
-					fi
-				fi
-			done
-			IFS=$SAVEIFS
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+	  - uses: actions/checkout@v1
+	  - name: Run a file transform script
+		run: sh ./.github/workflows/transform-leetcode-files.sh
+	  - name: switching from HTTPS to SSH
+	  	run: git remote set-url origin ${{ secrets.ssh }}
+	  - name: check for changes
+	  	run: git status
+	  - name: stage changed files
+	  	run: git add .
+	  - name: commit changed files
+	  	run: git commit -m "Auto updating leetcode file names"
+	  - name: fetch from master
+	  	run: git fetch origin master
+ 	  - name: push code to master
+	  	run: git push origin HEAD:master
+	  	run: echo "🍏 This job's status is ${{ job.status }}."
