@@ -1,17 +1,16 @@
 name: Transform Leetcode File Names
-"on":
+on:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-  workflow_dispatch: null
 jobs:
   Transform-Leetcode-Files:
     runs-on: ubuntu-latest
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
       - name: Run a file transform script
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v1
       - run: sh ./.github/workflows/transform-leetcode-files.sh
       - name: switching from HTTPS to SSH
       - run: "git remote set-url origin ${{ secrets.ssh }}"
