@@ -14,7 +14,7 @@ jobs:
       - run: |
           SAVEIFS=$IFS
           IFS=$(echo -en '\n\b')
-          cwd='test'
+          cwd='leetcode'
           for file in `ls ${cwd}`;do
             if [ ! -f "$file" ]; then
               cleanName=`tr '[:blank:]' '-' <<< "$file"`
@@ -26,7 +26,7 @@ jobs:
           done
           IFS=$SAVEIFS
       - name: switching from HTTPS to SSH
-        run: "git remote set-url origin ${{ secrets.ssh }}"
+        run: "git remote set-url origin git@github.com:${{ GITHUB_REPOSITORY }}.git"
       - name: check for changes
         run: git status
       - name: stage changed files
