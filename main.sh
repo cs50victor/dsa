@@ -1,3 +1,5 @@
+#!/bin/bash
+
 allPythonFiles=($(find * -name '*.py'| sort))
 
 for i in ${!allPythonFiles[@]}; do

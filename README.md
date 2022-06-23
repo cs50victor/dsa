@@ -1,4 +1,5 @@
 # Several Coding Patterns for Solving Data Structures and Algorithms Problems during Interviews
+[14-patterns-to-ace-any-coding-interview-question](https://hackernoon.com/14-patterns-to-ace-any-coding-interview-question-c5bb3357f6ed)
 
 These are my notes in <b>Javascript</b> from a [course](https://www.educative.io/courses/grokking-the-coding-interview) that categorizes coding interview problems into a set of <b>16 patterns</b>. 
 
